@@ -14,27 +14,35 @@ namespace Testing {
     class Program {
         public static void Main(string[] args) {
             LV_Interface db = new LV_Interface();
+            //db.NewWaferEntry("Andrew_50mA_Test");
+            db.LogData50mA("Andrew_50mA_Test", TEST_TYPE.INITIAL, TEST_AREA.CENTERA, 275.65, 900.45, 52.25, 2.45);
+            db.LogData50mA("Andrew_50mA_Test", TEST_TYPE.INITIAL, TEST_AREA.LEFT, 275.65, 900.45, 52.25, 2.45);
+            db.LogData50mA("Andrew_50mA_Test", TEST_TYPE.INITIAL, TEST_AREA.RIGHT, 275.65, 900.45, 52.25, 2.45);
 
-            int okay = db.CopyNewName("B02-0152-10", "B05-222-555");
+            db.LogData50mA("Andrew_50mA_Test", TEST_TYPE.AFTER, TEST_AREA.CENTERA, 275.65, 900.45, 52.25, 2.45);
+            db.LogData50mA("Andrew_50mA_Test", TEST_TYPE.AFTER, TEST_AREA.LEFT, 275.65, 900.45, 52.25, 2.45);
+            db.LogData50mA("Andrew_50mA_Test", TEST_TYPE.AFTER, TEST_AREA.RIGHT, 275.65, 900.45, 52.25, 2.45);
 
-            if(okay == 0) {
-                Table init = db.GetWaferData("B05-222-555", TEST_TYPE.INITIAL);
-                Table after = db.GetWaferData("B05-222-555", TEST_TYPE.AFTER);
+            //int okay = db.CopyNewName("B02-0152-10", "B05-222-555");
 
-                Console.WriteLine("Initial Data");
-                foreach(TestData row in init) {
-                    Console.WriteLine(row.ToString());
-                }
+            //if(okay == 0) {
+            //    Table init = db.GetWaferData("B05-222-555", TEST_TYPE.INITIAL);
+            //    Table after = db.GetWaferData("B05-222-555", TEST_TYPE.AFTER);
 
-                Console.WriteLine("After Data");
-                foreach(TestData row in after) {
-                    Console.WriteLine(row.ToString());
-                }
-            } else {
-                string error=(okay<0) ? "MYSQL Exception":"Already exist";
-                Console.WriteLine("Error: "+error);
-            }
-            
+            //    Console.WriteLine("Initial Data");
+            //    foreach(TestData row in init) {
+            //        Console.WriteLine(row.ToString());
+            //    }
+
+            //    Console.WriteLine("After Data");
+            //    foreach(TestData row in after) {
+            //        Console.WriteLine(row.ToString());
+            //    }
+            //} else {
+            //    string error=(okay<0) ? "MYSQL Exception":"Already exist";
+            //    Console.WriteLine("Error: "+error);
+            //}
+
 
 
             Console.WriteLine("Press any key to exit");

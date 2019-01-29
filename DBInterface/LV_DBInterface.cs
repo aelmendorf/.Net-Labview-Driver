@@ -197,6 +197,30 @@ namespace DBInterface {
             }
         }
 
+        public string LogData50mA(string wafer, TEST_TYPE type, TEST_AREA area, double wl, double power, double voltage, double knee) {
+
+            try {
+                using(MySqlConnection connect = new MySqlConnection(connectionString)) {
+                    connect.Open();
+                    string query = "epi_update_50ma";
+                    MySqlCommand cmd = new MySqlCommand(query, connect);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@wafer", wafer);
+                    cmd.Parameters.AddWithValue("@test", (int)type);
+                    cmd.Parameters.AddWithValue("@area", (int)area);
+                    cmd.Parameters.AddWithValue("@wl", wl);
+                    cmd.Parameters.AddWithValue("@power", power);
+                    cmd.Parameters.AddWithValue("@voltage", voltage);
+                    cmd.Parameters.AddWithValue("@knee", knee);
+                    cmd.ExecuteNonQuery();
+                }
+                return "success";
+            } catch(MySqlException ex) {
+                return ex.ToString();
+            }
+        }
+
         public int CopyNewName(string waferOld, string waferNew) {
             int retVal = 0;
             try {
