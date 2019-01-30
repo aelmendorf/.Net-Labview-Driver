@@ -14,14 +14,16 @@ namespace Testing {
     class Program {
         public static void Main(string[] args) {
             LV_Interface db = new LV_Interface();
-            //db.NewWaferEntry("Andrew_50mA_Test");
-            db.LogData50mA("Andrew_50mA_Test", TEST_TYPE.INITIAL, TEST_AREA.CENTERA, 275.65, 900.45, 52.25, 2.45);
-            db.LogData50mA("Andrew_50mA_Test", TEST_TYPE.INITIAL, TEST_AREA.LEFT, 275.65, 900.45, 52.25, 2.45);
-            db.LogData50mA("Andrew_50mA_Test", TEST_TYPE.INITIAL, TEST_AREA.RIGHT, 275.65, 900.45, 52.25, 2.45);
+            //db.NewWaferEntry("AE-abcd-02");
+            //db.LogData50mA("AE-abcd-02", TEST_TYPE.INITIAL, TEST_AREA.CENTERA, 275.65, 900.45, 52.25, 2.45);
+            //db.LogData50mA("AE-abcd-02", TEST_TYPE.INITIAL, TEST_AREA.LEFT, 275.65, 900.45, 52.25, 2.45);
+            //db.LogData50mA("AE-abcd-02", TEST_TYPE.INITIAL, TEST_AREA.RIGHT, 275.65, 900.45, 52.25, 2.45);
 
-            db.LogData50mA("Andrew_50mA_Test", TEST_TYPE.AFTER, TEST_AREA.CENTERA, 275.65, 900.45, 52.25, 2.45);
-            db.LogData50mA("Andrew_50mA_Test", TEST_TYPE.AFTER, TEST_AREA.LEFT, 275.65, 900.45, 52.25, 2.45);
-            db.LogData50mA("Andrew_50mA_Test", TEST_TYPE.AFTER, TEST_AREA.RIGHT, 275.65, 900.45, 52.25, 2.45);
+            //db.LogData50mA("AE-abcd-02", TEST_TYPE.AFTER, TEST_AREA.CENTERA, 275.65, 900.45, 52.25, 2.45);
+            //db.LogData50mA("AE-abcd-02", TEST_TYPE.AFTER, TEST_AREA.LEFT, 275.65, 900.45, 52.25, 2.45);
+            //db.LogData50mA("AE-abcd-02", TEST_TYPE.AFTER, TEST_AREA.RIGHT, 275.65, 900.45, 52.25, 2.45);
+            Console.WriteLine(db.DeleteEntry("Andrew_50mA_Test"));
+            Console.WriteLine(db.DeleteEntry("AndrewTest123"));
 
             //int okay = db.CopyNewName("B02-0152-10", "B05-222-555");
 
