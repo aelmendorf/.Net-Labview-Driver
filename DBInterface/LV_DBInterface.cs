@@ -275,10 +275,9 @@ namespace DBInterface {
         public Table GetWaferData(string wafer, TEST_TYPE type) {
             DataTable tbl = new DataTable();
             Table dat = new Table();
-            try {
                 using(MySqlConnection connect = new MySqlConnection(connectionString)) {
                     connect.Open();
-                    string query = "getWaferData";
+                    string query = "getWaferData_LB";
                     MySqlCommand cmd = new MySqlCommand(query, connect);
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Prepare();
@@ -295,9 +294,6 @@ namespace DBInterface {
                     }
                 }
                 return dat;
-            } catch(MySqlException ex) {
-                return null;
-            }
         }
 
         public DataTable GetSpectrum(string wafer,TEST_TYPE typ) {

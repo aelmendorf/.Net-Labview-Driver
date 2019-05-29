@@ -9,11 +9,22 @@ using System.IO;
 using System.Data;
 using Excel = Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json;
+using MySql.Data.MySqlClient;
 
 namespace Testing {
     class Program {
         public static void Main(string[] args) {
             LV_Interface db = new LV_Interface();
+            string server, uid, password, database, connectionString;
+
+
+            server = "172.20.4.20";
+            uid = "aelmendorf";
+            password = "Drizzle123!";
+            database = "epi";
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" +
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";" + "SslMode=none";
+
             //db.NewWaferEntry("AE-abcd-02");
             //db.LogData50mA("AE-abcd-02", TEST_TYPE.INITIAL, TEST_AREA.CENTERA, 275.65, 900.45, 52.25, 2.45);
             //db.LogData50mA("AE-abcd-02", TEST_TYPE.INITIAL, TEST_AREA.LEFT, 275.65, 900.45, 52.25, 2.45);
@@ -22,8 +33,41 @@ namespace Testing {
             //db.LogData50mA("AE-abcd-02", TEST_TYPE.AFTER, TEST_AREA.CENTERA, 275.65, 900.45, 52.25, 2.45);
             //db.LogData50mA("AE-abcd-02", TEST_TYPE.AFTER, TEST_AREA.LEFT, 275.65, 900.45, 52.25, 2.45);
             //db.LogData50mA("AE-abcd-02", TEST_TYPE.AFTER, TEST_AREA.RIGHT, 275.65, 900.45, 52.25, 2.45);
-            Console.WriteLine(db.DeleteEntry("Andrew_50mA_Test"));
-            Console.WriteLine(db.DeleteEntry("AndrewTest123"));
+            //Console.WriteLine(db.DeleteEntry("Andrew_50mA_Test"));
+            //Console.WriteLine(db.DeleteEntry("AndrewTest123"));
+            //DataTable tbl = new DataTable();
+            //Table dat = new Table();
+            //using(MySqlConnection connect = new MySqlConnection(connectionString)) {
+
+            //    connect.Open();
+            //    string query = "getWaferData_LB";
+            //    MySqlCommand cmd = new MySqlCommand(query, connect);
+            //    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            //    cmd.Prepare();
+            //    cmd.Parameters.AddWithValue("@wafer", "B01-1485-05");
+            //    cmd.Parameters.AddWithValue("@test", 1);
+            //    var reader = cmd.ExecuteReader();
+            //    if(reader.Read()) {
+            //        dat.Add(new TestData(TEST_AREA.CENTERA, (double)reader[0], (double)reader[1], (double)reader[2], (double)reader[3]));
+            //        dat.Add(new TestData(TEST_AREA.CENTERB, (double)reader[4], (double)reader[5], (double)reader[6], (double)reader[7]));
+            //        dat.Add(new TestData(TEST_AREA.CENTERC, (double)reader[8], (double)reader[9], (double)reader[10], (double)reader[11]));
+            //        dat.Add(new TestData(TEST_AREA.RIGHT, (double)reader[12], (double)reader[13], (double)reader[14], (double)reader[15]));
+            //        dat.Add(new TestData(TEST_AREA.TOP, (double)reader[16], (double)reader[17], (double)reader[18], (double)reader[19]));
+            //        dat.Add(new TestData(TEST_AREA.LEFT, (double)reader[20], (double)reader[21], (double)reader[22], (double)reader[23]));
+            //    }
+            //}
+            //foreach(TestData row in dat) {
+            //    Console.WriteLine("Power: {0}", row.Power);
+            //}
+
+
+            Table table = db.GetWaferData("B01-1485-05", TEST_TYPE.INITIAL);
+
+            Console.WriteLine("Initial Data");
+            foreach(TestData row in table) {
+                Console.WriteLine(row.ToString());
+            }
+
 
             //int okay = db.CopyNewName("B02-0152-10", "B05-222-555");
 
