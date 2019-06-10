@@ -173,7 +173,7 @@ namespace DBInterface {
             }
         }
 
-        public string LogData(string wafer, TEST_TYPE type, TEST_AREA area, double wl, double power, double voltage, double knee) {
+        public string LogData(string wafer, TEST_TYPE type, TEST_AREA area, double wl, double power, double voltage, double knee,double reverse) {
 
             try {
                 using(MySqlConnection connect = new MySqlConnection(connectionString)) {
@@ -189,6 +189,7 @@ namespace DBInterface {
                     cmd.Parameters.AddWithValue("@power", power);
                     cmd.Parameters.AddWithValue("@voltage", voltage);
                     cmd.Parameters.AddWithValue("@knee", knee);
+                    cmd.Parameters.AddWithValue("@reverse", reverse);
                     cmd.ExecuteNonQuery();
                 }
                 return "success";
@@ -197,7 +198,7 @@ namespace DBInterface {
             }
         }
 
-        public string LogData50mA(string wafer, TEST_TYPE type, TEST_AREA area, double wl, double power, double voltage, double knee) {
+        public string LogData50mA(string wafer, TEST_TYPE type, TEST_AREA area, double wl, double power, double voltage, double knee,double reverse) {
 
             try {
                 using(MySqlConnection connect = new MySqlConnection(connectionString)) {
@@ -213,6 +214,7 @@ namespace DBInterface {
                     cmd.Parameters.AddWithValue("@power", power);
                     cmd.Parameters.AddWithValue("@voltage", voltage);
                     cmd.Parameters.AddWithValue("@knee", knee);
+                    cmd.Parameters.AddWithValue("@reverse", reverse);
                     cmd.ExecuteNonQuery();
                 }
                 return "success";
